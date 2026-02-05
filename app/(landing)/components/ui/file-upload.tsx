@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { FiImage, FiTrash2, FiUploadCloud } from "react-icons/fi";
 
 type TFileUploadProps = {
-  onFileSelect: (file: File | null) => void;
+  onFileSelect?: (file: File | null) => void;
 };
 
 const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
@@ -15,7 +15,7 @@ const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
     if (!selectedFile) return;
     
     setFile(selectedFile);
-    onFileSelect(selectedFile);
+    onFileSelect?.(selectedFile);
   };
 
   const removeFile = (e: React.MouseEvent<HTMLButtonElement>) => {
