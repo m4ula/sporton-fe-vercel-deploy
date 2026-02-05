@@ -44,14 +44,14 @@ const productList = [
 
 const ProductsSection = () => {
   return (
-    <section id="products-section" className="container mx-auto mt-32">
+    <section id="products-section" className="container mx-auto mt-32 mb-52">
       <h2 className="font-bold italic text-4xl text-center mb-11">
         <span className="text-primary">OUR </span>PRODUCTS
       </h2>
       <div className="grid grid-cols-4 gap-5">
         {productList.map((product, index) => (
           <Link
-            href="#"
+            href={'/product/${product.name}'}
             key={index}
             className="p-1.5 bg-white hover:drop-shadow-xl duration-300"
           >
