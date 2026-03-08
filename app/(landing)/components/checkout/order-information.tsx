@@ -1,37 +1,57 @@
 "use client";
 
-import { useState } from "react";
 import CardWithHeader from "../ui/card-with-header";
 import { CustomerInfo } from "@/app/hooks/use-cart-store";
 
-type TOrderInformation  = {
+type Props = {
   formData: CustomerInfo;
   setFormData: React.Dispatch<React.SetStateAction<CustomerInfo>>;
 };
 
-const OrderInformation = ({formData, setFormData}: TOrderInformation) => {
-    
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+const OrderInformation = ({ formData, setFormData }: Props) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-    return (
-        <CardWithHeader title="Order Information">
-            <div className="px-5 py-4 flex flex-col gap-4">
-                <div className="input-group">
-                    <label htmlFor="customerName">Full Name</label>
-                    <input type="text" placeholder="Type your full name" id="customerName" name="customerName" value={formData.customerName} onChange={handleInputChange}/>
-                </div>
-                <div className="input-group">
-                    <label htmlFor="customerContact">Whatsaap Number</label>
-                    <input type="text" placeholder="+62xxxxx" id="customerContact" name="customerContact" value={formData.customerContact} onChange={handleInputChange}/>
-                </div>
-                <div className="input-group">
-                    <label htmlFor="customerAddres">Shipping Address</label>
-                    <textarea placeholder="Type your shipping address" id="customerAddress" name="customerAddress" value={formData.customerAddress} onChange={handleInputChange} rows={7}/>
-                </div>
-            </div>
-        </CardWithHeader >
-    );
+  return (
+    <CardWithHeader title="Order Information">
+      <div className="px-5 py-6 flex flex-col gap-4">
+        <div className="input-group">
+          <label>Full Name</label>
+          <input
+            name="customerName"
+            value={formData.customerName}
+            onChange={handleChange}
+            placeholder="Type your full name"
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Whatsapp Number</label>
+          <input
+            name="customerContact"
+            value={formData.customerContact ?? ""}
+            onChange={handleChange}
+            placeholder="Type your whatsapp number"
+          />
+        </div>
+
+        <div className="input-group">
+          <label>Shipping Address</label>
+          <textarea
+            name="customerAddress"
+            rows={5}
+            value={formData.customerAddress}
+            onChange={handleChange}
+            placeholder="Type your shipping address"
+          />
+        </div>
+      </div>
+    </CardWithHeader>
+  );
 };
 
 export default OrderInformation;
