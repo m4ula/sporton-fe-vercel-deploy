@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { FiImage, FiTrash2, FiUploadCloud } from "react-icons/fi";
 
 type TFileUploadProps = {
-  onFileSelect?: (file: File | null) => void;
+  onFileSelect: (file: File | null) => void;
 };
 
 const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
@@ -13,9 +13,8 @@ const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
 
   const handleFileChange = (selectedFile?: File) => {
     if (!selectedFile) return;
-    
     setFile(selectedFile);
-    onFileSelect?.(selectedFile);
+    onFileSelect(selectedFile);
   };
 
   const removeFile = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +32,7 @@ const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
         handleFileChange(e.dataTransfer.files?.[0]);
       }}
       className="flex flex-col justify-center items-center w-full py-6 border border-dashed border-primary bg-primary-light cursor-pointer"
-    >  
+    >
       <input
         type="file"
         className="hidden"
@@ -65,6 +64,6 @@ const FileUpload = ({ onFileSelect }: TFileUploadProps) => {
       )}
     </div>
   );
-}; 
+};
 
 export default FileUpload;
