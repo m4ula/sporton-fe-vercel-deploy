@@ -12,10 +12,12 @@ export default async function Home() {
   ]);
 
   return (
-    <main>
+    <main className="min-h-[80vh] mx-auto pt-20 py-20">
+      <div className="mx-auto py-20">   
       <HeroSection />
       <CategoriesSection categories={categories}/>
       <ProductsSection products={products}/>
+      </div>
     </main>
   );
 }

@@ -29,7 +29,7 @@ const ProductActions = ({ product, stock }: TProductActionsProps) => {
   return (
     <div className="flex gap-5 items-center">
       <div className="border border-gray-500 inline-flex w-fit in-w-[82px]">
-        <div className="aspect-square text-xl font-medium border-r border-gray-300 flex justify-center items-center">
+        <div className="aspect-square text-xl font-medium border-r border-gray-300 flex justify-center items-center px-4">
           <span>{qty}</span>
         </div>
         <div className="flex flex-col w-10">

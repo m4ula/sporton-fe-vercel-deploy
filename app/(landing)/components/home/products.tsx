@@ -41,7 +41,7 @@ const ProductsSection = ({products}: TProductsProps) => {
                 className="aspect-square object-contain"
               />
               <Button className="w-10 h-10 p-2! absolute right-3 top-3 " onClick={(e) =>handleAddtoCart(e, product)}>
-                <FiPlus size={24} />
+                <FiPlus size={18} />
               </Button>
             </div>
             <h3 className="font-medium text-lg mb-1.5 mt-4">{product.name}</h3>

@@ -1,25 +1,15 @@
+import { getImageUrl } from "@/app/lib/api";
+import { Category } from "@/app/types";
 import Image from "next/image";
-import { FiEdit, FiEdit2, FiTrash } from "react-icons/fi";
+import { FiEdit2, FiTrash } from "react-icons/fi";
 
-const categoryData = [
-  {
-    name: "Running",
-    imageUrl: "/images/categories/category-running.png",
-    description: "Lorem ipsum",
-  },
-  {
-    name: "Basketball",
-    imageUrl: "/images/categories/category-basketball.png",
-    description: "Lorem ipsum",
-  },
-  {
-    name: "Football",
-    imageUrl: "/images/categories/category-football.png",
-    description: "Lorem ipsum",
-  },
-];
+type TCategoryTableProps = {
+  categories: Category[];
+  onEdit: (category: Category) => void;
+  onDelete: (id: string) => void;
+};
 
-const CategoryTable = () => {
+const CategoryTable = ({ categories, onEdit, onDelete }: TCategoryTableProps) => {
   return (
     <div className="rounded-xl border border-gray-200 bg-white">
       <table className="w-full border-collapse text-left">
@@ -32,16 +22,13 @@ const CategoryTable = () => {
         </thead>
 
         <tbody>
-          {categoryData.map((data, index) => (
-            <tr
-              key={index}
-              className="border-b border-gray-200 last:border-b-0"
-            >
+          {categories.map((data, index) => (
+            <tr key={index} className="border-b border-gray-200 last:border-b-0">
               <td className="px-6 py-4 font-medium">
                 <div className="flex items-center gap-3">
                   <div className="rounded-md bg-gray-100 p-1">
                     <Image
-                      src={data.imageUrl}
+                      src={getImageUrl(data.imageUrl)}
                       width={48}
                       height={48}
                       alt={data.name}
@@ -52,22 +39,19 @@ const CategoryTable = () => {
                 </div>
               </td>
 
-              <td className="px-6 py-4 text-gray-600">
-                {data.description}
-              </td>
+              <td className="px-6 py-4 text-gray-600">{data.description}</td>
 
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
                   <button
-                    className="flex h-9 w-9 items-center justify-center rounded-md text-gray-600 hover:bg-gray-100"
-                    aria-label="Edit category"
+                    className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-gray-100"
+                    onClick={() => onEdit(data)}
                   >
                     <FiEdit2 size={18} />
                   </button>
-
                   <button
-                    className="flex h-9 w-9 items-center justify-center rounded-md text-red-600 hover:bg-red-100"
-                    aria-label="Delete category"
+                    className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-red-100 text-red-600"
+                    onClick={() => onDelete(data._id)}
                   >
                     <FiTrash size={18} />
                   </button>
