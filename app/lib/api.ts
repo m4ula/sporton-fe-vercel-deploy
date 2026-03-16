@@ -13,8 +13,7 @@ export async function fetchAPI<T>(
 
   const res = await fetch(`${baseUrl}${endpoint}`, {
     ...options,
-    cache: options?.cache ?? "force-cache",
-    next: { revalidate: 60 }
+    cache: options?.cache ?? "no-store",
   });
 
   if (!res.ok) {
@@ -52,7 +51,6 @@ export function getImageUrl(path?: string): string {
 }
 
 export function getAuthHeaders() {
-  if (typeof window === "undefined") return {}; // server-safe
   const token = localStorage.getItem("token");
   return {
     Authorization: `Bearer ${token}`
