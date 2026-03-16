@@ -74,7 +74,7 @@ const ProductManagement = () => {
 
         <Button
           className="flex items-center gap-2 rounded-lg"
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsModalOpen(true)}
         >
           <FiPlus size={20} />
           Add Product

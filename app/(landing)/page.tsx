@@ -4,6 +4,7 @@ import ProductsSection from "./components/home/products";
 import { getAllCategories } from "../services/category.service";
 import { getAllProducts } from "../services/product.service";
 
+export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const [categories, products ] = await Promise.all([

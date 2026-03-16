@@ -41,7 +41,6 @@ const Checkout = () => {
         <div className="grid grid-cols-2 gap-14 mt-11">
           <OrderInformation formData={formData} setFormData={setFormData} />
           <CartItems handlePayment={handlePayment} />
-          <p>{JSON.stringify(customerInfo)}</p>
         </div>
       </div>
     </main>
